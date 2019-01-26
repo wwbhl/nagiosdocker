@@ -5,8 +5,8 @@ RUN wget http://prdownloads.sourceforge.net/sourceforge/nagios/nagios-4.4.3.tar.
 RUN htpasswd -bc /usr/local/nagios/etc/htpasswd.users nagiosadmin nagios
 RUN systemctl enable httpd && systemctl enable nagios
 RUN wget https://nagios-plugins.org/download/nagios-plugins-2.2.1.tar.gz && tar zxf nagios-plugins-2.2.1.tar.gz && cd nagios-plugins-2.2.1 && ./configure --with-nagios-user=nagios --with-nagios-group=nagios && make -j 4 && make install
-RUN wget https://jaist.dl.sourceforge.net/project/nagios/nrpe-3.x/nrpe-3.2.1.tar.gz && tar xfvz nrpe-3.2.1.tar.gz && cd nrpe-3.2.1 && ./configure && make
-#&& make install-plugin && make install-daemon && make install-config
+RUN wget https://jaist.dl.sourceforge.net/project/nagios/nrpe-3.x/nrpe-3.2.1.tar.gz && tar xfvz nrpe-3.2.1.tar.gz && cd nrpe-3.2.1 && ./configure && make && make install-plugin
+# && make install-daemon && make install-config
 RUN rm -rf /nagios* && rm -rf /nrpe*
 EXPOSE 80
 CMD ["/usr/sbin/init"]
